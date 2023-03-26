@@ -256,9 +256,10 @@ function App() {
           </button>
         </div>
       )}
-      <div className="flex h-screen px-20 justify-center bg-cover bg-center bg-[url('https://i.imgur.com/XzmM73B.jpg')]">
-        {web3AuthProvider ? loggedInView : toLoginInView}
-      </div>
+      <div className={`flex h-screen px-20 justify-center bg-cover bg-center ${web3AuthProvider ? "bg-[url('https://i.imgur.com/ApY1GkH.jpeg')]" : "bg-[url('https://i.imgur.com/XzmM73B.jpg')]"}`}>
+  {web3AuthProvider ? loggedInView : toLoginInView}
+</div>
+
     </>
   );
 }
