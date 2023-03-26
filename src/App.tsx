@@ -246,20 +246,25 @@ function App() {
     <>
       {error && <ErrorMessage />}
       {web3AuthProvider && (
-        <div className="flex justify-between p-5 gap-5 items-center">
+        <div className="flex justify-between p-5 gap-5 items-center bg-black">
           <Dropdown chain={currentChain?.name!} />
           <button
             onClick={logout}
             className="px-4 py-1 border-2 border-[#b45f63] rounded-lg"
           >
-            <p className="font-semibold text-gray-800 text-lg">Logout</p>
+            <p className="font-semibold text-white text-lg">Logout</p>
           </button>
         </div>
       )}
-      <div className={`flex h-screen px-20 justify-center bg-cover bg-center ${web3AuthProvider ? "bg-[url('https://i.imgur.com/ApY1GkH.jpeg')]" : "bg-[url('https://i.imgur.com/XzmM73B.jpg')]"}`}>
-  {web3AuthProvider ? loggedInView : toLoginInView}
-</div>
-
+      <div
+        className={`flex h-screen px-20 justify-left bg-cover bg-center ${
+          web3AuthProvider
+            ? "bg-[url('https://i.imgur.com/ApY1GkH.jpeg')]"
+            : "bg-[url('https://i.imgur.com/XzmM73B.jpg')]"
+        }`}
+      >
+        {web3AuthProvider ? loggedInView : toLoginInView}
+      </div>
     </>
   );
 }

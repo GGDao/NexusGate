@@ -5,7 +5,7 @@ export const Eoa: React.FC<{
 }> = (props) => {
   const { user, wallet } = props;
   return (
-    <div className="flex flex-col gap-3 px-10 py-8 bg-[#808080] bg-opacity-90 rounded-lg shadow-md">
+    <div className="flex flex-col gap-3 px-10 py-8 bg-[#808080] bg-opacity-30 rounded-lg shadow-md">
       {user && (
         <div className="flex flex-col gap-1 justify-between">
           <div>
