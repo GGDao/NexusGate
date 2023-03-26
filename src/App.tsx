@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Children, useEffect, useState } from "react";
 import { SafeEventEmitterProvider, UserInfo } from "@web3auth/base";
 import "./App.css";
 import { ethers } from "ethers";
@@ -40,6 +40,7 @@ function App() {
   >();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [counter, setCounter] = useState<string>("0");
+  const [ethersInstance, setEthersInstance] = useState<any>();
   const [web3AuthProvider, setWeb3AuthProvider] =
     useState<SafeEventEmitterProvider | null>(null);
   const [smartWallet, setSmartWallet] = useState<GaslessWalletInterface | null>(
@@ -75,6 +76,7 @@ function App() {
       );
       dispatch(addTask(taskId));
     } catch (error) {
+      console.log(error, 'this error ran here');
       dispatch(addError((error as Error).message));
     }
   };
@@ -88,6 +90,7 @@ function App() {
         const { apiKey, chainId, target, rpcUrl, name } =
           getChainConfig(chainIdParam);
         setCurrentChain({ name, id: chainId });
+ 
         const smartWalletConfig: GaslessWalletConfig = { apiKey };
         const loginConfig: LoginConfig = {
           domains: [window.location.origin],
@@ -129,6 +132,7 @@ function App() {
       }
       setIsLoading(true);
       const web3Provider = new ethers.providers.Web3Provider(web3AuthProvider!);
+      setEthersInstance(web3AuthProvider);
       const signer = web3Provider.getSigner();
       setWallet({
         address: await signer.getAddress(),
@@ -169,6 +173,7 @@ function App() {
     const web3authProvider = await gelatoLogin.login();
     setWeb3AuthProvider(web3authProvider);
   };
+
 
   const logout = async () => {
     if (!gelatoLogin) {
