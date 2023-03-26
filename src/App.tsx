@@ -198,13 +198,13 @@ function App() {
             isDeployed={isDeployed}
             chainId={contractConfig?.chainId!}
           />
-          <Counter
+          {/* <Counter
             address={contractConfig?.target!}
             chainId={contractConfig?.chainId!}
             counter={counter}
             handleClick={increment}
             key={counter}
-          />
+          /> */}
         </div>
       )}
       {tasks.length > 0 && (

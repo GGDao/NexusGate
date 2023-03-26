@@ -6,10 +6,10 @@ export const SmartWallet: React.FC<{
   chainId: number;
 }> = (props) => {
   return (
-    <div className="flex flex-col gap-1 my-5 px-10 py-8 bg-gradient-to-r from-[#b45f63] to-[#f5c3a6] border-neutral-100 rounded-lg shadow-md">
+    <div className="flex flex-col gap-1 my-5 px-10 py-8 bg-[#808080] bg-opacity-90 border-neutral-100 rounded-lg shadow-md">
       <div className="flex flex-col gap-3 justify-start items-start">
-        <p className="text-2xl underline underline-offset-4 font-semibold text-white">
-          Smart Wallet Address
+        <p className="text-3xl font-semibold text-yellow-300">
+          Smart Wallet Address:
         </p>
         <a
           href={`${getBlockExplorerUrl(
@@ -20,9 +20,9 @@ export const SmartWallet: React.FC<{
           target="_blank"
           rel="noopener noreferrer"
         >
-          <p className="text-xl font-semibold text-white">{props.address}</p>
+          <p className="text-xl font-semibold text-yellow-300">{props.address}</p>
         </a>
-        <p className="text-sm text-[#f5c3a6]">
+        <p className="text-sm text-yellow-300">
           {props.isDeployed ? "Deployed" : "Not Deployed Yet"}
         </p>
       </div>
