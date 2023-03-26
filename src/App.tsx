@@ -76,7 +76,7 @@ function App() {
       );
       dispatch(addTask(taskId));
     } catch (error) {
-      console.log(error, 'this error ran here');
+      console.log(error, "this error ran here");
       dispatch(addError((error as Error).message));
     }
   };
@@ -90,7 +90,7 @@ function App() {
         const { apiKey, chainId, target, rpcUrl, name } =
           getChainConfig(chainIdParam);
         setCurrentChain({ name, id: chainId });
- 
+
         const smartWalletConfig: GaslessWalletConfig = { apiKey };
         const loginConfig: LoginConfig = {
           domains: [window.location.origin],
@@ -174,7 +174,6 @@ function App() {
     setWeb3AuthProvider(web3authProvider);
   };
 
-
   const logout = async () => {
     if (!gelatoLogin) {
       return;
@@ -218,16 +217,21 @@ function App() {
   );
 
   const toLoginInView = (
-    <div className="flex justify-center flex-col items-center h-full w-full gap-10">
-      <p className="text-6xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-[#b45f63] to-[#f5c3a6]">
-        Account Abstraction PoC
+    <div className="flex justify-center flex-col h-full w-full gap-10">
+      <p className="text-3xl font-extrabold text-yellow-300">Welcome to,</p>
+      <p className="text-5xl font-extrabold text-yellow-300">Nexus Gateway</p>
+      <p className="text-md font-extrabold text-yellow-300 max-w-md">
+        The ultimate platform for tokenizing e-sports teams and empowering
+        players, teams, and fans alike. Our platform provides a wide range of
+        functionality and benefits that elevate the e-sports experience to new
+        heights.
       </p>
 
       <div className="h-12">
         {!isLoading && (
           <button
             onClick={login}
-            className="px-4 border-2 border-[#b45f63] rounded-lg"
+            className="px-4 border-2 border-[#30838c] bg-yellow-300 rounded-lg"
           >
             <p className="px-4 py-1 font-semibold text-gray-800 text-lg">
               Login
@@ -252,7 +256,7 @@ function App() {
           </button>
         </div>
       )}
-      <div className="flex h-screen px-20 justify-center">
+      <div className="flex h-screen px-20 justify-center bg-cover bg-center bg-[url('https://i.imgur.com/XzmM73B.jpg')]">
         {web3AuthProvider ? loggedInView : toLoginInView}
       </div>
     </>
