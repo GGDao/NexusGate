@@ -9,7 +9,7 @@ export const Dropdown = ({ chain }: Props) => {
     <div className="dropdown">
       <label
         tabIndex={0}
-        className="btn-sm px-4 py-1 font-bold text-lg underline underline-offset-8 decoration-orange-900 bg-gradient-to-r from-orange-900 via-orange-600 to-orange-300 inline-block text-transparent bg-clip-text cursor-pointer"
+        className="btn-sm whitespace-nowrap px-4 py-1 font-bold text-lg underline underline-offset-8 decoration-orange-900 bg-gradient-to-r from-orange-900 via-orange-600 to-orange-300 inline-block text-transparent bg-clip-text cursor-pointer"
       >
         {chain}
       </label>
