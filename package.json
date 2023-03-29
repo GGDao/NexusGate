@@ -11,6 +11,8 @@
     "@mui/lab": "^5.0.0-alpha.103",
     "@mui/material": "^5.11.10",
     "@reduxjs/toolkit": "^1.9.1",
+    "@safe-global/safe-core-sdk": "^3.3.2",
+    "@safe-global/safe-ethers-lib": "^1.9.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
