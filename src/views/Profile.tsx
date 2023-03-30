@@ -62,7 +62,7 @@ export const Profile = (props: {}) => {
             <h1>Name: {user?.name}</h1>
             <h1>Email: {user?.email}</h1>
             <button
-            className="w-1/2 bg-donut bg-yellow-600 rounded-full px-12 py-2  text-black font-bold  md:mb-0"
+              className="w-1/2 bg-donut bg-yellow-600 rounded-full px-12 py-2  text-black font-bold  md:mb-0"
               onClick={() => {
                 if (!deployTeamSafe) return;
                 deployTeamSafe();
