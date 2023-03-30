@@ -6,7 +6,7 @@ import { SAFE_CONTRACT_ABI, JSON_ABI } from "../constants";
 import { ethers } from "ethers";
 
 export const Profile = (props: {}) => {
-  const { isLoading, user, ethersInstance, deployTeamSafe } = useGelato();
+  const { isLoading, user, ethersInstance, deployTeamSafe, tokenDeploy } = useGelato();
   console.log(user);
   const tasks = useAppSelector((state) => state.tasks.tasks);
 
@@ -65,6 +65,14 @@ export const Profile = (props: {}) => {
               }}
             >
               Safe
+            </button>
+            <button
+              onClick={() => {
+                if (!tokenDeploy) return;
+                tokenDeploy();
+              }}
+            >
+              Token Deploy
             </button>
             <Tasks />
           </>

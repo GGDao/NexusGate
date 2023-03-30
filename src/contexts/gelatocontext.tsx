@@ -8,7 +8,7 @@ import React, {
 
 import { addError } from "../store/slices/errorSlice";
 import { useAppDispatch } from "../store/hooks";
-import { SAFE_CONTRACT_ABI } from "../constants";
+import { TOKEN_ABI } from "../constants";
 
 import { addTask } from "../store/slices/taskSlice";
 import { ethers } from "ethers";
@@ -50,6 +50,7 @@ type GelatoType = {
   login?: Function;
   logout?: Function;
   deployTeamSafe?: Function;
+  tokenDeploy?: Function;
 };
 
 // Create a new context
@@ -168,9 +169,14 @@ export const GelatoProvider = ({ children }: Props) => {
       const gelatoSmartWallet = gelatoLogin.getGaslessWallet();
       setSmartWallet(gelatoSmartWallet);
       setIsDeployed(await gelatoSmartWallet.isDeployed());
+      // const counterContract = new ethers.Contract(
+      //   "0xa6b71e26c5e0845f74c812102ca7114b6a896ab2",
+      //   SAFE_CONTRACT_ABI,
+      //   new ethers.providers.Web3Provider(web3AuthProvider!).getSigner()
+      // );
       const counterContract = new ethers.Contract(
-        "0xa6b71e26c5e0845f74c812102ca7114b6a896ab2",
-        SAFE_CONTRACT_ABI,
+        contractConfig?.target!,
+        TOKEN_ABI,
         new ethers.providers.Web3Provider(web3AuthProvider!).getSigner()
       );
       setCounterContract(counterContract);
@@ -229,27 +235,27 @@ export const GelatoProvider = ({ children }: Props) => {
       console.log("TESTING");
       //await smartWallet.deployTeamSafe(counterContract.address);
 
-      //console.log("safeFactory", safeFactory);
+      // console.log("safeFactory", safeFactory);
       // console.log(Object.keys(safeFactory));
-      // let singleton = "0x3E5c63644E683549055b9Be8653de26E0B4CD36E";
-      // let initializer =
-      //   "0xb63e800d0000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000180000000000000000000000000f48f2b2d2a534e402487b3ee7c18c33aec0fe5e40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003000000000000000000000000e2b8651bf50913057ff47fc4f02a8e12146083b80000000000000000000000008c4827ebc999a0daa89e01c27de4a82426c8df240000000000000000000000000e481a40edc9f37280c1f1b2c703657052681b020000000000000000000000000000000000000000000000000000000000000000";
-      // let salt = "1680052484376511";
-      // console.log(counterContract);
-      // let { data } =
-      //   await counterContract.populateTransaction.createProxyWithNonce(
-      //     singleton,
-      //     initializer,
-      //     salt
-      //   );
-      // console.log(data, "DATA");
+      let singleton = "0x3E5c63644E683549055b9Be8653de26E0B4CD36E";
+      let initializer =
+        "0xb63e800d0000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000180000000000000000000000000f48f2b2d2a534e402487b3ee7c18c33aec0fe5e40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003000000000000000000000000e2b8651bf50913057ff47fc4f02a8e12146083b80000000000000000000000008c4827ebc999a0daa89e01c27de4a82426c8df240000000000000000000000000e481a40edc9f37280c1f1b2c703657052681b020000000000000000000000000000000000000000000000000000000000000000";
+      let salt = "1680052484376511";
+      console.log(counterContract);
+      let { data } =
+        await counterContract.populateTransaction.createProxyWithNonce(
+          singleton,
+          initializer,
+          salt
+        );
+      console.log(data, "DATA");
 
-      // if (!data) return;
-      // const { taskId } = await smartWallet.sponsorTransaction(
-      //   "0xa6b71e26c5e0845f74c812102ca7114b6a896ab2",
-      //   data
-      // );
-      // console.log("taskId", taskId);
+      if (!data) return;
+      const { taskId } = await smartWallet.sponsorTransaction(
+        "0xa6b71e26c5e0845f74c812102ca7114b6a896ab2",
+        data
+      );
+      console.log("taskId", taskId);
       console.log(smartWallet.getAddress())
       const safeFactory = await SafeFactory.create({ ethAdapter });
       const safeSdk = await safeFactory.deploySafe({
@@ -304,6 +310,30 @@ export const GelatoProvider = ({ children }: Props) => {
   //   }
   // };
 
+  const tokenDeploy = async () => {
+    if (!counterContract) {
+      return dispatch(addError("Counter Contract is not initiated"));
+    }
+    let { data } = await counterContract.populateTransaction.create("Test", "TST");
+    if (!data) {
+      return dispatch(
+        addError("Counter Contract Transaction Data could not get populated")
+      );
+    }
+    if (!smartWallet) {
+      return dispatch(addError("Smart Wallet is not initiated"));
+    }
+    try {
+      const { taskId } = await smartWallet.sponsorTransaction(
+        contractConfig?.target!,
+        data
+      );
+      dispatch(addTask(taskId));
+    } catch (error) {
+      dispatch(addError((error as Error).message));
+    }
+  };
+
   // Define the value object that will be passed down to consumers
   const contextValue = {
     isLoading,
@@ -314,6 +344,7 @@ export const GelatoProvider = ({ children }: Props) => {
     login,
     logout,
     deployTeamSafe,
+    tokenDeploy,
     smartWallet,
     user,
     wallet,

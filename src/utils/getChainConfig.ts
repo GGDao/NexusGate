@@ -34,7 +34,8 @@ export const getChainConfig = (
       name: "Mumbai",
       apiKey: process.env.REACT_APP_SPONSOR_API_KEY!,
       chainId: 80001,
-      target: "0xBf17E7a45908F789707cb3d0EBb892647d798b99",
+      target: "0x95C3C276C45FdDf0160139CfA9378160E1abe50A",
+      //target: "0xBf17E7a45908F789707cb3d0EBb892647d798b99", old increment contract
       rpcUrl: process.env.REACT_APP_MUMBAI_RPC_URL!,
     };
   }
