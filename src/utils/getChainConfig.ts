@@ -18,7 +18,7 @@ export const getChainConfig = (
       name: "Gnosis",
       apiKey: process.env.REACT_APP_SPONSOR_API_KEY_MAINNET!,
       chainId: 100,
-      target: "0x2dd703a17170C1b03abC26C4D5dc56c9382c5292",
+      target: "0xCceb2cb52b27fdEC6211B705Cdb33345C3452143",
       rpcUrl: process.env.REACT_APP_GNOSIS_RPC_URL!,
     };
   } else if (chainId === "84531") {
@@ -26,7 +26,7 @@ export const getChainConfig = (
       name: "Base Goerli",
       apiKey: process.env.REACT_APP_SPONSOR_API_KEY!,
       chainId: 84531,
-      target: "0xFeeBbED640df887bE1aD697EC3719EB7205323E9",
+      target: "0xFefDadb1c553a2d19ED43F6Aab0C7251470db1BA",
       rpcUrl: process.env.REACT_APP_BASEGOERLI_RPC_URL!,
     };
   } else {
@@ -34,8 +34,8 @@ export const getChainConfig = (
       name: "Mumbai",
       apiKey: process.env.REACT_APP_SPONSOR_API_KEY!,
       chainId: 80001,
-      target: "0x95C3C276C45FdDf0160139CfA9378160E1abe50A",
-      //target: "0xBf17E7a45908F789707cb3d0EBb892647d798b99", old increment contract
+      target: "0x9228C7d6240D02EFBa841B84Ec667bfDc9E2EfDD",
+      //target: "0x95C3C276C45FdDf0160139CfA9378160E1abe50A",
       rpcUrl: process.env.REACT_APP_MUMBAI_RPC_URL!,
     };
   }

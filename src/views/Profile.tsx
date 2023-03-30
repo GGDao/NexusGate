@@ -6,7 +6,8 @@ import { SAFE_CONTRACT_ABI, JSON_ABI } from "../constants";
 import { ethers } from "ethers";
 
 export const Profile = (props: {}) => {
-  const { isLoading, user, ethersInstance, deployTeamSafe, tokenDeploy } = useGelato();
+  const { isLoading, user, ethersInstance, deployTeamSafe, tokenDeploy } =
+    useGelato();
   console.log(user);
   const tasks = useAppSelector((state) => state.tasks.tasks);
 
@@ -40,9 +41,11 @@ export const Profile = (props: {}) => {
             const returnedData = logs[0].data;
             console.log(returnedData);
             const iface = new ethers.utils.Interface(JSON_ABI);
-            const decodedData = iface.decodeFunctionResult('createProxyWithNonce', returnedData);
+            const decodedData = iface.decodeFunctionResult(
+              "createProxyWithNonce",
+              returnedData
+            );
             console.log(decodedData);
-        
           }
         }
       });
@@ -59,6 +62,7 @@ export const Profile = (props: {}) => {
             <h1>Name: {user?.name}</h1>
             <h1>Email: {user?.email}</h1>
             <button
+            className="w-1/2 bg-donut bg-yellow-600 rounded-full px-12 py-2  text-black font-bold  md:mb-0"
               onClick={() => {
                 if (!deployTeamSafe) return;
                 deployTeamSafe();
@@ -67,6 +71,7 @@ export const Profile = (props: {}) => {
               Safe
             </button>
             <button
+              className="w-1/2 bg-donut bg-yellow-600 rounded-full px-12 py-2  text-black font-bold  md:mb-0"
               onClick={() => {
                 if (!tokenDeploy) return;
                 tokenDeploy();
