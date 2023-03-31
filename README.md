@@ -28,7 +28,7 @@ NexusGate is an innovative platform designed to tokenize esports teams, empoweri
 - Step 8: Distribute tokens
 - Step 9: Add remove members
 
-
+## Deployments
  | Gnosis Chain | ------ Deployments ------ |
  | --------------------------------------------- | ------------------------------------------------------------------ |
  | [Deployer Contract](https://gnosisscan.io/tx/0x66e94d6e7fe65adda8dfd4c6ea80925492920d55d7c242026b35911f6a24b5aa) | 0xcceb2cb52b27fdec6211b705cdb33345c3452143
