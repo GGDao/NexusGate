@@ -1,45 +1,45 @@
-# Getting Started with App
-## Available Scripts
-
-
 # NEXUS GATE
 
-- [x] Concept & design
-- [x] Build frontend
+- [x] [Concept & design](https://www.figma.com/file/IRfl6Cu2ZHBUDMtQ24UUPo/NexuSgate?node-id=306%3A374&t=vS02wnUjE6Opj3nD-1
+) 
+- [ ] Build frontend
 - [x] Build backend
 - [x] Build smart contracts
 - [x] Deploy smart contracts to Testnet
 - [x] Test user flow and transactions in localhost
-- [x] Deploy fully functional dApp via Netlify
 - [x] Record demo video
-- [x] Finalize deck
-- [ ] Recover :)
+
 
 ## Details
 
-Inflow NFT is an NFT asset that allows users to monetize the NFT ownership via ad views and a distributed advertising dollars model.
+NexusGate is an innovative platform designed to tokenize esports teams, empowering players, teams, and fans alike through, ownership, and new funding opportunities. The platform aims to revolutionize the esports industry by leveraging blockchain technology and eliminating the barriers of it. This can enhance transparency and trust, democratize decision-making, create new revenue streams, and enhance strategic partnerships.
 
-It is a suite of smart contracts that streams gas-efficient revenue from a campaign wallet to both the NFT creator and holder wallets. Funds are 
-distributed per second due to the super tokens protocol ability. This mean that as a video ad runs, people can be paid for the number of seconds it is 
-actually watched.  
+## How It Works
+[Concept Design ](https://www.figma.com/file/IRfl6Cu2ZHBUDMtQ24UUPo/NexuSgate?node-id=306%3A374&t=vS02wnUjE6Opj3nD-1
+) 
+- Step 1: Sign In With Your Social Account (Track: Gelato+Web3Auth)
+- Step 2: Choose your chain of your team will live (upper left)
+- Step 3: Enter
+- Step 4: CLick Create a Team (left side) 
+- Step 5: Add team details and invite members 
+- Step 6: Deploy team safe under profile tab (safe)
+- Step 7: Deploy your token (token deploy)
+- *** Pending Steps
+- Step 8: Distribute tokens
+- Step 9: Add remove members
 
-Advertisers have the abillity to pay NFT holders to advert to them directly via their NFTs.
-The advertiser will pay to stream money from the caller contract to the NFT collection contract using
-SuperFluid's streaming money platform.  We chose streaming because we want the advertising to last as
-long as the advertiser is willing to pay to keep the advert up (longer the advert the bigger the cost).
-The NFT handles the distribution of the income earned through the revenue streaming.  Each NFT
-accounts for 1 equal claim of the income recieved.  Handling thousands of wallets, leveraging SuperFluids
-Instant Distribution System we can save a massive amount of gas and resources handling the dynamic distribution.  Considering much of the trading that happens with NFTs, the transfer of ownership is taken accounted for within the NFT releasing the rights to claim from the original owner to the new owner for future claims.
-
-| [Watch Streams](https://console.superfluid.finance/mumbai/accounts/0xf550146991831be20872fa4809b23dadcc371c43?tab=streams) | See the money paid out in real time
-
- [Video Demo](https://www.loom.com/share/37c086bf144e479eb151043f8e11da45) | 
- [Live Site](https://64177103b99a7b000828ac4d--musical-pika-fed894.netlify.app/) | 
-
- | Mumbai | ------ Deployments ------ |
+## Deployments
+ | Gnosis Chain | ------ Deployments ------ |
  | --------------------------------------------- | ------------------------------------------------------------------ |
- | [NFT Contract Address](https://mumbai.polygonscan.com/address/0xb5dB35352F20E35F2370f990d31c261CF2FA1C3a) | 0xbCe18071E78B0bCE00db6A243a9585Ae5e3A7D05 |
- | [Streaming Contract ](https://mumbai.polygonscan.com/address/0x58ed25d94F562565A89Cd425A84D069813Bf934e) | 0xF550146991831Be20872fA4809b23dadCc371C43 |
+ | [Deployer Contract](https://gnosisscan.io/tx/0x66e94d6e7fe65adda8dfd4c6ea80925492920d55d7c242026b35911f6a24b5aa) | 0xcceb2cb52b27fdec6211b705cdb33345c3452143
+
+ | Gorli Base | ------ Deployments ------ |
+ | --------------------------------------------- | ------------------------------------------------------------------ |
+ | [Deployer Contract](https://goerli.basescan.org/address/0xFefDadb1c553a2d19ED43F6Aab0C7251470db1BA) | 0xFefDadb1c553a2d19ED43F6Aab0C7251470db1BA |
+
+  | Mumbai | ------ Deployments ------ |
+ | --------------------------------------------- | ------------------------------------------------------------------ |
+ | [Deployer Contract](https://mumbai.polygonscan.com/tx/0x355cafc5815fb6cf4b33b7fd35b32d06086154af3e7a7a101c33dd24c645ba30) | 0x9228C7d6240D02EFBa841B84Ec667bfDc9E2EfDD |
 
 
 ## Technologies
@@ -47,29 +47,31 @@ Instant Distribution System we can save a massive amount of gas and resources ha
 This project is built with the following open source libraries, frameworks and languages. User choice of framework used, available in plain js or typescript.
 | Tech | Description |
 | --------------------------------------------- | ------------------------------------------------------------------ |
-| ------ | ------ React Frontend Environment ------ |
-| [Next JS](https://nextjs.org/) | React Framework |
+| ------ | ------ Frontend Environment ------ |
+| [React](https://react.dev/) | React Framework |
 | ------ | ------ CSS Framework ------ |
 | [Tailwind](https://tailwindcss.com/) | A utility-first CSS framework |
 | ------ | ------ Ethereum Development Environment ------ |
 | [Hardhat](https://hardhat.org/) | Ethereum development environment for professionals |
+| ------ | ------ BlockChains ------ |
+| [Base Testnet](https://bridge.base.org/) |Coinbase Test net |
+| [Gnosis Chain](https://www.gnosis.io/) | Gnosis Chain is one of the first Ethereum sidechains and has stayed true to its values. |
+| [Mambai](https://mumbai.polygonscan.com/) | Polygon Testnet
 | ------ | ------ Included Libraries ------ |
-| [WAGMI](https://wagmi.sh/) | A set of React Hooks for Web3 |
-| [RainbowKit](https://www.rainbowkit.com/docs/introduction) | RainbowKit is a React library that makes it easy to add wallet connection to your dapp. |
-| [SuperFluid](https://www.superfluid.finance/) | Money Streaming and distribution platform
-
-
-
-
+| [Safe Core SDK for AA](https://docs.safe.global/learn/safe-core/safe-core-account-abstraction-sdk) |The Safe{Core} Account abstraction SDK allows builders to add account abstraction functionality into their apps.|
+| [Gelato Gas Relayers](https://docs.gelato.network/developer-services/relay) | Enabling developers to get transactions validated fast, reliably and securely. |
+| [Gelato Gasless Wallet](https://docs.gelato.network/developer-services/gasless-wallet) | Gasless Wallet allows externally owned accounts (EOAs) to deploy their own smart contract wallet
+| [Gasless Onboarding](https://docs.gelato.network/developer-services/gasless-wallet/gasless-onboarding) | Gasless Onboardin gives developers the ability to onboard their users via social logins such as Google, Facebook, Discord, etc.
 
 
 ## To Work on
 
-- The ability to wrap the native token seemlessly to the wrapped streaming token asset
-- The ability for users to "OPT IN"
-- Instant payment rewarded for every second of ad content watched, instead of ongoing money stream
+- Add final functionality to distribute tokens
+- Add functionality to add or remove team members
+- Add vesting functionality for token vesting for members
+- Add UI images and designs
 
-
+# 
 
 In the project directory, you can run:
 
