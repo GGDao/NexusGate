@@ -52,6 +52,7 @@ type GelatoType = {
   logout?: Function;
   deployTeamSafe?: Function;
   tokenDeploy?: Function;
+  teamSafe?: any; //most likely string
 };
 
 // Create a new context
@@ -104,6 +105,7 @@ export const GelatoProvider = ({ children }: Props) => {
     chainId: number;
   } | null>(null);
   const [isDeployed, setIsDeployed] = useState<boolean>(false);
+  const [teamSafe, setTeamSafe] = useState<any>();
 
   useEffect(() => {
     console.log("running");
@@ -158,7 +160,6 @@ export const GelatoProvider = ({ children }: Props) => {
       }
       setIsLoading(true);
       const web3Provider = new ethers.providers.Web3Provider(web3AuthProvider!);
-      console.log("----web3Provider---", web3Provider);
       setEthersInstance(web3Provider);
       const signer = web3Provider.getSigner();
       setWallet({
@@ -258,6 +259,8 @@ export const GelatoProvider = ({ children }: Props) => {
       
       console.log("Team Safe Address", safeSdk.getAddress());
       return safeSdk.getAddress();
+      setTeamSafe(safeSdk.getAddress());
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -306,6 +309,7 @@ export const GelatoProvider = ({ children }: Props) => {
     wallet,
     counterContract,
     web3AuthProvider,
+    teamSafe,
   };
 
   // Render the provider with the context value and children

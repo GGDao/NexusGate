@@ -6,7 +6,7 @@ import { SAFE_CONTRACT_ABI, JSON_ABI } from "../constants";
 import { ethers } from "ethers";
 
 export const Profile = (props: {}) => {
-  const { isLoading, user, ethersInstance, deployTeamSafe, tokenDeploy } =
+  const { isLoading, user, ethersInstance, deployTeamSafe, tokenDeploy, teamSafe } =
     useGelato();
   console.log(user);
   const tasks = useAppSelector((state) => state.tasks.tasks);
@@ -53,6 +53,41 @@ export const Profile = (props: {}) => {
     load();
   }, [tasks, ethersInstance]);
 
+  const safeLoadingView = (
+    <div className="flex justify-center flex-col h-full w-full mt-5 gap-10">
+      <div className="h-12">
+        <>
+          <p className="animate-pulse font-bold">
+            This Safe Transaction Sponsored by GUStakes
+          </p>
+        </>
+      </div>
+    </div>
+  );
+
+  const buttonView = (
+    <div className="flex justify-center flex-row items-center h-full w-1/3 mt-5 gap-5">
+      <button
+        className="w-1/2 bg-donut bg-blue-400 rounded-full px-12 py-2  text-black font-bold  md:mb-0"
+        onClick={() => {
+          if (!deployTeamSafe) return;
+          deployTeamSafe();
+        }}
+      >
+        Safe
+      </button>
+      <button
+        className="w-1/2 bg-donut bg-blue-400 rounded-full px-12 py-2  text-black font-bold  md:mb-0"
+        onClick={() => {
+          if (!tokenDeploy) return;
+          tokenDeploy();
+        }}
+      >
+        Token Deploy
+      </button>
+    </div>
+  );
+
   return (
     <div>
       {eoaAccounts.map((account) => {
@@ -70,6 +105,8 @@ export const Profile = (props: {}) => {
             >
               Token Deploy
             </button>
+            {!teamSafe ? null : <h1>Team Safe: {teamSafe}</h1> }
+            <div>{!isLoading ? buttonView : safeLoadingView}</div>
             <Tasks />
           </>
         );
