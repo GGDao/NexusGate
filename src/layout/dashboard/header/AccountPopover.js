@@ -11,6 +11,7 @@ import {
   IconButton,
   Popover,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { useGelato } from "../../../contexts/gelatocontext";
 // mocks_
 // ----------------------------------------------------------------------
@@ -35,7 +36,8 @@ const MENU_OPTIONS = [
 export default function AccountPopover() {
   const [open, setOpen] = useState(null);
 
-  const { user } = useGelato();
+  const { user, logout } = useGelato();
+  const navigate = useNavigate();
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -43,9 +45,9 @@ export default function AccountPopover() {
 
   const handleClose = () => {
     setOpen(null);
+    logout();
+    navigate('/');
   };
-
-  console.log(user);
 
   return (
     <>

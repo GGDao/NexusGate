@@ -31,7 +31,6 @@ export const CreateTeam = (props: {}) => {
   );
 
   useEffect(() => {
-    console.log(ethersInstance);
     const load = async () => {
       const network = await ethersInstance.getNetwork();
       const account = await ethersInstance.listAccounts();
@@ -47,6 +46,9 @@ export const CreateTeam = (props: {}) => {
       return alert("missing info!");
 
     const newTeam = {
+      team_name: teamData?.name,
+      team_token_name: teamData?.tokenName,
+      team_token_symbol: teamData?.tokenSymbol,
       creator_email: user.email,
       creator_address: creatorAddress,
       pending_invites: teamMembers,
@@ -55,7 +57,7 @@ export const CreateTeam = (props: {}) => {
 
     await createTeam(newTeam);
     alert("submitted");
-  }, [user, creatorAddress, teamMembers, wallet]);
+  }, [user, creatorAddress, teamData, teamMembers, wallet]);
 
   const renderMemeberInput = useMemo(() => {
     const res = [];
@@ -178,7 +180,7 @@ export const CreateTeam = (props: {}) => {
             autoFocus
             onChange={handleChange}
             fullWidth
-            name="tokensymbol"
+            name="tokenSymbol"
             placeholder="Enter Team Token Symbol"
             sx={{ mr: 1, fontWeight: "fontWeightBold" }}
           />

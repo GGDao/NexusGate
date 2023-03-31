@@ -64,15 +64,6 @@ export const Profile = (props: {}) => {
             <button
               className="w-1/2 bg-donut bg-yellow-600 rounded-full px-12 py-2  text-black font-bold  md:mb-0"
               onClick={() => {
-                if (!deployTeamSafe) return;
-                deployTeamSafe();
-              }}
-            >
-              Safe
-            </button>
-            <button
-              className="w-1/2 bg-donut bg-yellow-600 rounded-full px-12 py-2  text-black font-bold  md:mb-0"
-              onClick={() => {
                 if (!tokenDeploy) return;
                 tokenDeploy();
               }}

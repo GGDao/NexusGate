@@ -245,25 +245,19 @@ export const GelatoProvider = ({ children }: Props) => {
     signerOrProvider: signerWallet,
   });
 
-  ////////////
 
-  const deployTeamSafe = async () => {
+  const deployTeamSafe = async (owners: string[], threshold: number) => {
     try {
-      console.log("------- Starting Safe Deploy -------");
-      console.log("------- tempProvider-------", provider)
       const safeFactory = await SafeFactory.create({ ethAdapter });
-      console.log("SafeFactory passed")
       const safeSdk = await safeFactory.deploySafe({
         safeAccountConfig: {
-          threshold: 2,
-          owners: [
-            "0xe2b8651bF50913057fF47FC4f02A8e12146083B8", //pull from backend for addresses
-            "0x8C4827Ebc999a0daa89E01C27dE4A82426C8df24",
-            "0x0E481a40Edc9F37280c1f1B2C703657052681B02",
-          ],
+          threshold,
+          owners 
         },
       });
+      
       console.log("Team Safe Address", safeSdk.getAddress());
+      return safeSdk.getAddress();
     } catch (error) {
       console.log(error);
     }

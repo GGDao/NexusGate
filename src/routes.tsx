@@ -3,6 +3,7 @@ import { Home } from "./views/Home";
 import DashboardLayout from "./layout/dashboard/DashboardLayout";
 import { Profile } from "./views/Profile";
 import { CreateTeam } from "./views/CreateTeam";
+import { MyTeams } from "./views/MyTeams";
 // layouts
 
 export default function Router() {
@@ -18,6 +19,7 @@ export default function Router() {
         { element: <Navigate to="/dashboard/profile" />, index: true },
         { path: "profile", element: <Profile />},
         { path: "create", element: <CreateTeam />},
+        { path: "my_teams", element: <MyTeams /> }
       ],
     },
   ]);
